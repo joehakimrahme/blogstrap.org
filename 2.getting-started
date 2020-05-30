@@ -1,0 +1,81 @@
+Getting Started
+---------------
+
+Initialize your blog using:
+
+```
+$ blogstrap init --target /tmp/newblog
+```
+
+This will create the `newblog` directory if it doesn't exist, and use
+it as a root for your blog. It should generate a bunch of files.
+
+```
+$ tree -a newblog
+newblog
+├── .blogstrap
+│   ├── blogstrap.conf
+│   └── wsgi.py
+└── homepage_blogstrap
+
+1 directory, 3 files
+
+```
+
+* **homepage_blogstrap** is the first page in your blog and Blogstrap
+  is configured to serve it as your homepage.
+
+* **wsgi.py** is the WSGI entry point to your blog. If you don't know
+  what this is, it's the file required by web servers to locate your
+  content. In practice you will almost never need to modify it.
+
+* **blogstrap.conf** holds the configuration options to manage aspects
+  of Blogstrap behavior.
+
+
+Let's take a closer look at the config file:
+
+```
+$ cat newblog/.blogstrap/blogstrap.conf
+# The path of a directory that holds the markdown articles
+BLOGROOT = "/tmp/newblog"
+# The title will be added to the top banner in every page
+BLOGTITLE = "Generated with BlogStrap"
+# Make the app more verbose when necessary. Don't use in production.
+DEBUG = False
+
+# STATIC_PAGES = []   # Insert link to these pages in the navbar
+# TOC_BLACKLIST = []  # Exclude these pages from the TOC
+# This page will be displayed at the blog root
+HOMEPAGE = homepage_blogstrap
+```
+
+Now let's add an article. Create a new file `helloworld` inside the
+`newblog` directory you've just created:
+
+```markdown
+$ cat helloworld
+# My new blog!
+
+This is my new blog!
+```
+
+Run the app in the development server:
+
+```
+$ blogstrap run
+```
+
+You can now access the article using `curl`:
+
+```
+$ curl http://127.0.0.1:5000/helloworld
+```
+
+Note that if you access `http://127.0.0.1:5000/helloworld` from your
+web browser, Blogstrap will generate an html version of the article
+instead of the markdown version.
+
+Documentation
+-------------
+{{ toc }}
