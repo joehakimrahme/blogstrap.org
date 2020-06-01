@@ -1,5 +1,5 @@
 # The path of a directory that holds the markdown articles
-BLOGROOT = "/home/jhakimra/src/blogstrap.org/"
+BLOGROOT = "."
 # The title will be added to the top banner in every page
 BLOGTITLE = "Blogstrap"
 # Make the app more verbose when necessary. Don't use in production.
@@ -13,5 +13,5 @@ NAVBAR_LINKS = {
     "What's New": 'whats-new',
 }
 TOC_BLACKLIST = ['whats-new', 'index']
-
+STATIC_DIR = "images"
 FAVICON = "favicon.png"
