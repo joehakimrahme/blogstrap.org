@@ -10,6 +10,8 @@ $ pip install blogstrap
 * It's still changing fast so I recommend installing from source:
 
 ```
+$ git clone https://github.com/joehakimrahme/Blogstrap
+$ cd Blogstrap
 $ python setup.py install
 ```
 

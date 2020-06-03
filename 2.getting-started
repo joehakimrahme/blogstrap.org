@@ -11,14 +11,15 @@ This will create the `newblog` directory if it doesn't exist, and use
 it as a root for your blog. It should generate a bunch of files.
 
 ```
-$ tree -a newblog
-newblog
+$ tree -a /tmp/newblog
+/tmp/newblog
 ├── .blogstrap
-│   ├── blogstrap.conf
-│   └── wsgi.py
-└── homepage_blogstrap
+│   ├── blogstrap.conf
+│   └── wsgi.py
+├── homepage_blogstrap
+└── images
 
-1 directory, 3 files
+2 directories, 3 files
 
 ```
 
@@ -32,11 +33,13 @@ newblog
 * **blogstrap.conf** holds the configuration options to manage aspects
   of Blogstrap behavior.
 
+* **images** is the directory holding your images and other static
+    content.
 
 Let's take a closer look at the config file:
 
 ```
-$ cat newblog/.blogstrap/blogstrap.conf
+$ cat /tmp/newblog/.blogstrap/blogstrap.conf
 # The path of a directory that holds the markdown articles
 BLOGROOT = "/tmp/newblog"
 # The title will be added to the top banner in every page
@@ -44,17 +47,19 @@ BLOGTITLE = "Generated with BlogStrap"
 # Make the app more verbose when necessary. Don't use in production.
 DEBUG = False
 
-# STATIC_PAGES = []   # Insert link to these pages in the navbar
+# NAVBAR_LINKS = {}   # key:value map of links to include in the Navbar.
 # TOC_BLACKLIST = []  # Exclude these pages from the TOC
+# STATIC_DIR = "images"
+# FAVICON = "favicon.ico"  # Located in the STATIC_DIR
 # This page will be displayed at the blog root
-HOMEPAGE = homepage_blogstrap
+HOMEPAGE = "homepage_blogstrap"
 ```
 
 Now let's add an article. Create a new file `helloworld` inside the
 `newblog` directory you've just created:
 
 ```markdown
-$ cat helloworld
+$ cat /tmp/newblog/helloworld
 # My new blog!
 
 This is my new blog!
@@ -63,6 +68,7 @@ This is my new blog!
 Run the app in the development server:
 
 ```
+$ cd /tmp/newblog
 $ blogstrap run
 ```
 
